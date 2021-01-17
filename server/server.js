@@ -1,13 +1,13 @@
 import bodyParser from 'body-parser'
-import express from 'express'
 import dotenv from 'dotenv'
+import express from 'express'
 import morgan from 'morgan'
 import path from 'path'
 
-import userRoutes from "./routes/userRoutes.js";
-import configPassport from "./config/auth.js";
-import configDatabase from "./config/database.js";
-import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import configPassport from './config/auth.js'
+import configDatabase from './config/database.js'
+import { errorHandler, notFound } from './middleware/errorMiddleware.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 configPassport()
@@ -24,7 +24,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/user', userRoutes)
+app.use('/api', userRoutes)
 //
 app.use(notFound)
 app.use(errorHandler)

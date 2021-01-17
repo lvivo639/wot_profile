@@ -1,8 +1,8 @@
 import passport from 'passport'
-import local from 'passport-local'
 import jwtPassport from 'passport-jwt'
+import local from 'passport-local'
 
-import UserModel from "../models/userModel.js"
+import UserModel from '../models/userModel.js'
 
 const SECRET_OT_KEY = 'TOP_SECRET'
 const QUERY_TOKEN = 'token'
@@ -41,6 +41,9 @@ const configPassport = () => {
             },
             async (jwt_payload, done) => {
                 try {
+                    const user = await UserModel.findOne({_id: jwt_payload.user._id})
+                    if (!user) return done(null, false, {message: 'User not found'})
+
                     return done(null, jwt_payload.user)
                 } catch (err) {
                     done(err)
