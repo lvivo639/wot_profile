@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
+  "type": "module",
   "scripts": {
     "server": "nodemon server/server",
     "killport": "kill $(lsof -t -i:5000)"
